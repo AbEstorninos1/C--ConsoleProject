@@ -1,1 +1,1 @@
-# C-ConsoleProject
+This is my console c# project. im first year bsit student. 
