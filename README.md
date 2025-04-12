@@ -1,1 +1,1 @@
-This is my console c# project. im first year bsit student. 
+This is my console c# project. im first year bsit student. Self learn programmer to become a good programmer
