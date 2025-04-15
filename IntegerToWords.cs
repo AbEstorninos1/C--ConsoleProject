@@ -10,18 +10,18 @@ public static class Program
         Console.Write("Enter number(1-2000):");
         int number = int.Parse(Console.ReadLine());
 
-        string num = number.ToString(); // Convert the number to string to access the index
+        string num = number.ToString();
         string result = "";
 
 
-        if (number < 0 &&number > 2000) //determine if the number is greater than
+        if (number < 1 || number > 2000)
         {
-            Console.Write("0 - 2000 only.");
+            Console.Write("1 - 2000 only.");
         }
 
-        if (num.Length == 4 && number > 0 && number <= 2000) //determine if the number length of 4
+        if (num.Length == 4 && number > 0 && number <= 2000)
         {
-            if (num[0] == '1') //if the first number is 1
+            if (num[0] == '1')
             {
                 result += "One Thousand";
                 number -= 1000;
@@ -81,14 +81,14 @@ public static class Program
                 }
 
             }
-            else if (num[0] == '2') // if the first number is 2;
+            else if (num[0] == '2')
             {
                 result += "Two Thousand";
             }
 
 
         }
-        else if (num.Length == 3 && number > 0 && number <= 2000) // if the number is only 3 digit
+        else if (num.Length == 3 && number > 0 && number <= 2000)
         {
 
             if (number >= 100 && number < 200)
@@ -139,7 +139,7 @@ public static class Program
                 number -= 900;
             }
         }
-        else if (num.Length == 2 && number > 0 && number <= 2000) // if the number is 2 digit only
+        else if (num.Length == 2 && number > 0 && number <= 2000)
         {
             if (number >= 0 && number < 10)
             {
@@ -190,7 +190,7 @@ public static class Program
         }
 
 
-        if (number >= 10 && number < 20) //if the number is 10 to eleven
+        if (number >= 10 && number < 20)
         {
             if (number == 10)
             {
@@ -239,10 +239,10 @@ public static class Program
         }
 
 
-        if (number >= 20 && number < 30) // if the number is 20
+        if (number >= 20 && number < 30)
         {
             number -= 20;
-            result += " twenty";//add space to combine it to 3 - 4 digit number for better output.
+            result += " twenty";
         }
         else if (number >= 30 && number < 40)
         {
@@ -323,11 +323,8 @@ public static class Program
         }
 
 
-        if (num.Length == 1 && number == 0) //if the number is 1 digit
-        {
-            result += "Zero";
-        }
-        else if (num.Length == 1 && number == 1)
+
+        if (num.Length == 1 && number == 1)
         {
             result += "One";
         }
@@ -365,10 +362,7 @@ public static class Program
         }
 
 
-        if (num.Length != 1 && number == 0) //if the number is not 1 digit
-        {
-            result += " Zero";//Add space for good ouput
-        }
+
         if (num.Length != 1 && number == 1)
         {
             result += " One";
