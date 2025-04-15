@@ -14,7 +14,7 @@ public static class Program
         string result = "";
 
 
-        if (number > 2000) //determine if the number is greater than
+        if (number < 0 &&number > 2000) //determine if the number is greater than
         {
             Console.Write("0 - 2000 only.");
         }
