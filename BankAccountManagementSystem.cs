@@ -243,7 +243,7 @@ class AccountManager : AccountAuthenication
 
         while (true)
         {
-            Console.Write("Enter a new account number(8 - 16 digit):");
+            Console.Write("Enter a new account number(8 - 10 digit):");
             if (int.TryParse(Console.ReadLine(), out newAccountNumber))
             {
                 if (newAccountNumber == 0)
@@ -251,13 +251,13 @@ class AccountManager : AccountAuthenication
                     Console.Clear();
                     new Bank("StartUpPage");
                 }
-                if (newAccountNumber.ToString().Length >= 8 && newAccountNumber.ToString().Length <= 16)
+                if (newAccountNumber.ToString().Length >= 8 && newAccountNumber.ToString().Length <= 10)
                 {
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("Account number must be 8 - 16 digit.");
+                    Console.WriteLine("Account number must be 8 - 10 digit.");
                 }
             }
             else
@@ -267,7 +267,7 @@ class AccountManager : AccountAuthenication
 
         while (true)
         {
-            Console.Write("Enter a new account password(8 - 16 digit):");
+            Console.Write("Enter a new account password(8 - 10 digit):");
             if (int.TryParse(Console.ReadLine(), out newAccountPassword))
             {
                 if (newAccountPassword == 0)
@@ -275,13 +275,13 @@ class AccountManager : AccountAuthenication
                     Console.Clear();
                     new Bank("StartUpPage");
                 }
-                if (newAccountPassword.ToString().Length >= 8 && newAccountPassword.ToString().Length <= 16)
+                if (newAccountPassword.ToString().Length >= 8 && newAccountPassword.ToString().Length <= 10)
                 {
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("Account number must be 8 - 16 digit.");
+                    Console.WriteLine("Account number must be 8 - 10 digit.");
                 }
             }
             else
