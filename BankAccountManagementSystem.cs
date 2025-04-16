@@ -32,13 +32,6 @@ class Account
     public long account_password { get; set; }
     public long account_balance { get; set; } = 0;
 }
-class TransactionHistory
-{
-    public string TransactionType { get; set; }
-    public string account_name { get; set; }
-
-    public List<Account> transaction { get; set; } = new List<Account>();
-}
 class AccountManager : AccountAuthenication
 {
     public AccountManager(int choose)
