@@ -19,6 +19,7 @@ abstract class AccountAuthenication
     protected abstract void Login();
     protected abstract void ForgotPassword();
     protected abstract void CreateAccount();
+
 }
 public abstract class BankServices
 {
@@ -56,6 +57,9 @@ class AccountManager : AccountAuthenication
             case 3:
                 CreateAccount();
                 Console.Clear();
+                break;
+            case 4:
+                Environment.Exit(0);
                 break;
 
         }
@@ -370,13 +374,14 @@ class Bank : BankServices
         1.Login
         2.Forgot Password
         3.Create Account
+        4.Exit
         
         Choose:
         """);
 
             if (int.TryParse(Console.ReadLine(), out choose))
             {
-                if (choose > 0 && choose < 4)
+                if (choose > 0 && choose < 5)
                 {
                     new AccountManager(choose);
 
