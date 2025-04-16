@@ -233,7 +233,7 @@ class AccountManager : AccountAuthenication
             }
             else
             {
-                Console.WriteLine("Account number must be 8 - 16 digit.");
+                Console.WriteLine("Account name must be 8 - 16 character.");
             }
 
 
@@ -477,7 +477,7 @@ class Bank : BankServices
         Console.ReadKey();
         Console.Clear();
     }
-    static void WithdrawBalance()
+    protected override void WithdrawBalance()
     {
         int ammount = 0;
         var account = accountlist.Find(x => x.account_name == _accountName);
@@ -493,7 +493,7 @@ class Bank : BankServices
             if (int.TryParse(Console.ReadLine(), out ammount))
             {
                 if (ammount == 0)
-                    HomePage(_accountName);
+                   Console.Clear(); HomePage(_accountName);
                 if (account.account_balance < ammount)
                 {
                     Console.WriteLine("Insufficient balance.");
