@@ -24,6 +24,12 @@ abstract class AccountAuthenication
 public abstract class BankServices
 {
     public abstract void StartUp();
+    protected abstract void HomePage(string name);
+    protected abstract void CheckAccountBalance();
+    protected abstract void WithdrawBalance();
+    protected abstract void DepositBalance();
+    protected abstract void TransferMoney();
+    protected abstract string PrintReciept(int Ammount, long Balance, long AccountNumber);
 }
 class Account
 {
@@ -395,7 +401,7 @@ class Bank : BankServices
 
         }
     }
-    static void HomePage(string name)
+    protected override void HomePage(string name)
     {
         var account = accountlist.Find(x => x.account_name == _accountName);
         _accountName = name;
@@ -461,7 +467,7 @@ class Bank : BankServices
         }
 
     }
-    static void CheckAccountBalance()
+    protected override void CheckAccountBalance()
     {
         var account = accountlist.Find(x => x.account_name == _accountName);
         Console.FontSize = 15;
@@ -533,7 +539,7 @@ class Bank : BankServices
         }
 
     }
-    static void DepositBalance()
+    protected override void DepositBalance()
     {
         int ammount = 0;
         var account = accountlist.Find(x => x.account_name == _accountName);
@@ -570,7 +576,7 @@ class Bank : BankServices
             HomePage(_accountName);
         }
     }
-    static void TransferMoney()
+    protected override void TransferMoney()
     {
         int ammount = 0;
         bool isAccountNotValid = true;
@@ -699,7 +705,7 @@ class Bank : BankServices
     }
 
 
-    static string PrintReciept(int Ammount, long Balance, long AccountNumber)
+    protected override string PrintReciept(int Ammount, long Balance, long AccountNumber)
     {
         DateTime date = DateTime.Now;
         return $"""
