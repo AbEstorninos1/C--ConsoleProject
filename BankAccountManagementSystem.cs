@@ -196,10 +196,11 @@ class AccountManager : AccountAuthenication
         }
 
     }
-    protected override void CreateAccount()
+     protected override void CreateAccount()
     {
 
         Console.Clear();
+
         string newAccountName = "";
         int newAccountNumber, newAccountPassword, newAccountBalance = 0;
 
@@ -215,25 +216,32 @@ class AccountManager : AccountAuthenication
             Console.Write("Enter a new account name(8 - 16 Character):");
             newAccountName = Console.ReadLine();
 
-
-            if (newAccountName == "0")
+            var isAccountAlreadyExist = Bank.accountlist.Where(x => x.account_name == newAccountName);
+            if (isAccountAlreadyExist.Any())
             {
-                Console.Clear();
-                new Bank("StartUpPage");
-            }
-            if (newAccountName.Length >= 8 && newAccountName.Length <= 16)
-            {
-                if (newAccountName.Any(Char.IsDigit))
-                {
-                    Console.WriteLine("Account name doesn't contain digit.");
-                    Thread.Sleep(500);
-                }
-                else
-                    break;
+                Console.WriteLine("Account already exist.");
             }
             else
             {
-                Console.WriteLine("Account name must be 8 - 16 character.");
+                if (newAccountName == "0")
+                {
+                    Console.Clear();
+                    new Bank("StartUpPage");
+                }
+                if (newAccountName.Length >= 8 && newAccountName.Length <= 16)
+                {
+                    if (newAccountName.Any(Char.IsDigit))
+                    {
+                        Console.WriteLine("Account name doesn't contain digit.");
+                        Thread.Sleep(500);
+                    }
+                    else
+                        break;
+                }
+                else
+                {
+                    Console.WriteLine("Account name must be 8 - 16 character .");
+                }
             }
 
 
@@ -245,18 +253,26 @@ class AccountManager : AccountAuthenication
             Console.Write("Enter a new account number(8 - 10 digit):");
             if (int.TryParse(Console.ReadLine(), out newAccountNumber))
             {
-                if (newAccountNumber == 0)
+                var isAccountAlreadyExist = Bank.accountlist.Where(x => x.account_number == newAccountNumber);
+                if (isAccountAlreadyExist.Any())
                 {
-                    Console.Clear();
-                    new Bank("StartUpPage");
-                }
-                if (newAccountNumber.ToString().Length >= 8 && newAccountNumber.ToString().Length <= 10)
-                {
-                    break;
+                    Console.WriteLine("Account number already exist.");
                 }
                 else
                 {
-                    Console.WriteLine("Account number must be 8 - 10 digit.");
+                    if (newAccountNumber == 0)
+                    {
+                        Console.Clear();
+                        new Bank("StartUpPage");
+                    }
+                    if (newAccountNumber.ToString().Length >= 8 && newAccountNumber.ToString().Length <= 10)
+                    {
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Account number must be 8 - 10 digit.");
+                    }
                 }
             }
             else
@@ -492,8 +508,9 @@ class Bank : BankServices
             Console.Write("Enter ammount to withdraw: P");
             if (int.TryParse(Console.ReadLine(), out ammount))
             {
-                if (ammount == 0)
+                if (ammount == 0){
                    Console.Clear(); HomePage(_accountName);
+}
                 if (account.account_balance < ammount)
                 {
                     Console.WriteLine("Insufficient balance.");
@@ -505,11 +522,7 @@ class Bank : BankServices
                 Console.WriteLine("Invalid input.Please enter a valid ammount.");
         }
 
-        if (ammount == 0)
-        {
-            Console.Clear();
-            HomePage(_accountName);
-        }
+    
 
         Console.Write($"Are you sure(Y/N)?");
         string response = Console.ReadLine().ToLower();
