@@ -153,44 +153,58 @@ class AccountManager : AccountAuthenication
 
         } while (attempt < 3);
     }
-    protected override void ForgotPassword()
+     protected override void ForgotPassword()
     {
-        Console.FontSize = 13;
+
         while (true)
         {
             Console.WriteLine("Forgot Password\n");
             Console.WriteLine("Type '0' to Back.\n");
             Console.Write("Enter Account number:");
-            int accountNumber = int.Parse(Console.ReadLine());
-            var findAccountNumber = Bank.accountlist.Where(x => x.account_number == accountNumber);
 
 
-            if (findAccountNumber.Any())
+            if (int.TryParse(Console.ReadLine(), out int accountNumber))
             {
-                Console.Write("Enter new account password:");
-                int password = int.Parse(Console.ReadLine());
-
-                var changeAccountPassword = Bank.accountlist.Find(x => x.account_number == accountNumber);
-                changeAccountPassword.account_password = password;
-
-                var isPasswordChangeSuccesfully = Bank.accountlist.Where(x => x.account_password == password);
-
-                if (isPasswordChangeSuccesfully.Any())
+                var findAccountNumber = Bank.accountlist.Where(x => x.account_number == accountNumber);
+                if (accountNumber == 0)
                 {
-                    Console.WriteLine("Account Password Change successfully.");
-                    Thread.Sleep(500);
                     Console.Clear();
                     new Bank("StartUpPage");
+                }
+                if (findAccountNumber.Any())
+                {
+                    Console.Write("Enter new account password:");
+                    int password = int.Parse(Console.ReadLine());
 
+                    var changeAccountPassword = Bank.accountlist.Find(x => x.account_number == accountNumber);
+                    changeAccountPassword.account_password = password;
+
+                    var isPasswordChangeSuccesfully = Bank.accountlist.Where(x => x.account_password == password);
+
+                    if (isPasswordChangeSuccesfully.Any())
+                    {
+                        Console.WriteLine("Account Password Change successfully.");
+                        Thread.Sleep(500);
+                        Console.Clear();
+                        new Bank("StartUpPage");
+
+                    }
+                    else
+                    {
+                        Console.Write("Please Try again later.");
+                    }
                 }
                 else
                 {
-                    Console.Write("Please Try again later.");
+                    Console.Write("Account number doesn't exist.");
+                    Thread.Sleep(500);
+                    Console.Clear();
                 }
             }
             else
             {
-                Console.Write("Account number doesn't exist.");
+                Console.WriteLine("Invalid Input. Please input valid account number.");
+                Thread.Sleep(500);
                 Console.Clear();
             }
         }
@@ -509,7 +523,9 @@ class Bank : BankServices
             if (int.TryParse(Console.ReadLine(), out ammount))
             {
                 if (ammount == 0){
-                   Console.Clear(); HomePage(_accountName);
+                   Console.Clear(); 
+                   HomePage(_accountName);
+                   }
 }
                 if (account.account_balance < ammount)
                 {
